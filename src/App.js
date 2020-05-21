@@ -1,40 +1,37 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import axios from 'axios'
 
-export class Search extends Component {
+import Navbar from './components/layout/Navbar'
+import Users from './components/users/Users'
+import Search from './components/users/Search'
+import './App.css'
+
+class App extends Component {
   state = {
-    text: ''
+    users: [],
+    loading: false
   }
 
-
-
-  onSubmit = e => {
-    e.preventDefault()
-    this.props.searchUsers(this.state.text)
-    this.setState({ text: '' })
+  // search github users
+  searchUsers = async text => {
+    this.setState({ loading: true })
+    const res = await axios.get(
+      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    )
+    this.setState({ users: res.data.items, loading: false })
   }
-
-  onChange = e => this.setState({ [e.target.name]: e.target.value })
 
   render() {
     return (
-      <div>
-        <form className='form' onSubmit={this.onSubmit}>
-          <input
-            type='text'
-            name='text'
-            placeholder='Search Users...'
-            onChange={this.onChange}
-          />
-          <input
-            type='submit'
-            value='Search'
-            className='btn btn-dark btn-block'
-          />
-        </form>
+      <div className='App'>
+        <Navbar />
+        <div className='container'>
+          <Search searchUsers={this.searchUsers} />
+          <Users loading={this.state.loading} users={this.state.users} />
+        </div>
       </div>
     )
   }
 }
 
-export default Search
+export default App
