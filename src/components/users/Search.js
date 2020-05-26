@@ -21,7 +21,8 @@ export class Search extends Component {
   onChange = e => this.setState({ [e.target.name]: e.target.value })
 
   render() {
-    return (
+    const { showClear, clearUsers } = this.props
+    return ( 
       <div>
         <form className='form' onSubmit={this.onSubmit}>
           <input
@@ -36,7 +37,7 @@ export class Search extends Component {
             className='btn btn-dark btn-block'
           />
         </form>
-        {this.props.showClear && <button className="btn btn-light btn-block" onClick={this.props.clearUsers}>Clear</button>}
+        {showClear && <button className="btn btn-light btn-block" onClick={clearUsers}>Clear</button>}
       </div>
     )
   }
