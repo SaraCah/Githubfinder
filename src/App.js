@@ -4,6 +4,7 @@ import axios from "axios";
 import Navbar from "./components/layout/Navbar";
 import Users from "./components/users/Users";
 import Search from "./components/users/Search";
+import Alert from "./components/layout/Alert"
 import "./App.css";
 
 class App extends Component {
@@ -28,7 +29,9 @@ class App extends Component {
   };
 
   setAlert = (msg, type) => {
-    this.setState({alert: {msg: msg, type}})
+    this.setState({alert: {msg, type}});
+
+    setTimeout(()=> this.setState({alert: null}), 5000)
   }
 
   render() {
@@ -37,6 +40,7 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <div className="container">
+          <Alert alert={this.state.alert} />
           <Search
             searchUsers={this.searchUsers}
             clearUsers={this.clearUsers}
