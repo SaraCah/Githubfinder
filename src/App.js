@@ -28,7 +28,6 @@ class App extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
       <div className='App'>
         <Navbar />
         <div className='container'>
@@ -41,16 +40,3 @@ class App extends Component {
 }
 
 export default App
-=======
-      <div className="App">
-        <Navbar />
-        <div className="container">
-          <Users loading={this.state.loading} users={this.state.users}/>
-        </div>
-      </div>
-    );
-  }
-}
-
-export default App;
->>>>>>> 6dcd7935ead5146a87510330242376f8cd6ba2a6

@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "name": "githublol",
-=======
-  "name": "github-finder",
->>>>>>> 6dcd7935ead5146a87510330242376f8cd6ba2a6
   "version": "0.1.0",
   "private": true,
   "dependencies": {
